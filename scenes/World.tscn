@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://qilvpu34musp"]
+
+[ext_resource type="Texture2D" uid="uid://ddvyjq4pm5vur" path="res://assets/images/Sea bottom.png" id="1_epfqr"]
+
+[node name="World" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.96, 0.81)
+texture = ExtResource("1_epfqr")
