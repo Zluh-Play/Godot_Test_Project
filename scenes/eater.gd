@@ -3,13 +3,15 @@ extends Area2D
 var speed = 100
 var target_food = null
 var hunger_time = 0  # Время с момента последнего поедания еды
-var hunger_limit = 5  # Время в секундах до "смерти" от голода
+var hunger_limit = 10  # Время в секундах до "смерти" от голода
 var reproduction_radius = 50  # Радиус для поиска партнера для размножения
+var reproduce_timeout = 10
 
 var move_direction = Vector2.ZERO  # Направление движения
 
 func _ready() -> void:
 	print("Eater is here!")
+	self.add_to_group("eater")
 	find_nearest_food()
 	set_random_move_direction()
 
@@ -40,9 +42,9 @@ func _process(_delta: float) -> void:
 		# Если еды нет или она исчезла, бродим случайным образом
 		move_randomly(_delta)
 		
-		if hunger_time >= 3:
+		if hunger_time <= 3:
 			try_reproduce()
-		return
+			return
 
 func find_nearest_food() -> void:
 	# Находим все объекты еды в сцене
@@ -77,32 +79,37 @@ func eat_food() -> void:
 
 func try_reproduce() -> void:
 	# Ищем других "eater" поблизости
-	var eaters = get_tree().get_nodes_in_group("eater")
-	var nearest_eater = null
-	var nearest_distance = reproduction_radius
-	
-	# Ищем ближайшего "eater"
-	for eater in eaters:
-		# Игнорируем себя
-		if eater == self:
-			continue
-			
-		var dist = position.distance_to(eater.position)
-		if dist < nearest_distance:
-			nearest_distance = dist
-			nearest_eater = eater
-	
-	# Если нашли партнера для размножения, создаем нового "eater"
-	if nearest_eater:
-		print("Found a mate for reproduction!")
-		reproduce(nearest_eater)
+	if reproduce_timeout <= 0:
+		var eaters = get_tree().get_nodes_in_group("eater")
+		var nearest_eater = null
+		var nearest_distance = reproduction_radius
+		
+		# Ищем ближайшего "eater"
+		for eater in eaters:
+			# Игнорируем себя
+			if eater == self:
+				continue
+				
+			var dist = position.distance_to(eater.position)
+			if dist < nearest_distance:
+				nearest_distance = dist
+				nearest_eater = eater
+		
+		# Если нашли партнера для размножения, создаем нового "eater"
+		if nearest_eater:
+			print("Found a mate for reproduction!")
+			reproduce(nearest_eater)
+			reproduce_timeout = 1000
+	else:
+		reproduce_timeout -= 1
 
 func reproduce(partner: Area2D) -> void:
 	# Создаем нового "eater" на позиции текущего
-	var new_eater = load("res://scenes/eater.tscn").instance()  # Укажите путь к сцене Eater
+	var new_eater = load("res://scenes/eater.tscn").instantiate()  # Укажите путь к сцене Eater
 	get_parent().add_child(new_eater)
-	new_eater.position = position + Vector2(randf_range(-10, 10), randf_range(-10, 10))  # Небольшое случайное смещение
+	new_eater.position = position + Vector2(randf_range(-50, 50), randf_range(-50, 50))  # Небольшое случайное смещение
 	print("New Eater has been born!")
+	
 	
 	# Можно добавить дополнительные условия для размножения, например, увеличить шанс после нескольких поеданий.
 	
