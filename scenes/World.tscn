@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://qilvpu34musp"]
+[gd_scene load_steps=4 format=3 uid="uid://qilvpu34musp"]
 
+[ext_resource type="PackedScene" uid="uid://d4jlv1eivtqy4" path="res://scenes/food.tscn" id="1_6ieh2"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_wlhio"]
+[ext_resource type="PackedScene" uid="uid://b0jgm4m1iaskt" path="res://scenes/eater.tscn" id="2_5o1c8"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_wlhio")
+
+[node name="Eater" parent="." instance=ExtResource("2_5o1c8")]
+position = Vector2(283, 258)
+
+[node name="Food" parent="." instance=ExtResource("1_6ieh2")]
+position = Vector2(673, 387)

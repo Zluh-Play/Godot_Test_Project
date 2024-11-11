@@ -8,6 +8,8 @@ func _ready() -> void:
 	find_nearest_food()
 
 func _process(_delta: float) -> void:
+	
+	find_nearest_food()
 	# Проверяем, что еда существует и она не была удалена
 	if target_food and is_instance_valid(target_food) and target_food.is_inside_tree():
 		# Рассчитываем направление к еде
