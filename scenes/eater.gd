@@ -4,7 +4,7 @@ var speed = 100
 var target_food = null
 var hunger_time = 0  # Время с момента последнего поедания еды
 var hunger_limit = 10  # Время в секундах до "смерти" от голода
-var reproduction_radius = 50  # Радиус для поиска партнера для размножения
+var reproduction_radius = 25  # Радиус для поиска партнера для размножения
 var reproduce_timeout = 10
 
 var move_direction = Vector2.ZERO  # Направление движения
