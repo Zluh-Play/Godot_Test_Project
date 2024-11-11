@@ -6,7 +6,7 @@ var eater_scene = preload("res://scenes/eater.tscn")
 func _ready() -> void:
 	print("World is created!..")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _input(event):
