@@ -1,7 +1,17 @@
-[gd_scene format=3 uid="uid://c4d6j4bvaxta0"]
+[gd_scene load_steps=5 format=3 uid="uid://c4d6j4bvaxta0"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[ext_resource type="Script" path="res://scenes/Fish/fish.gd" id="1_bxeq1"]
+[ext_resource type="PackedScene" uid="uid://cebu2xebllolu" path="res://scenes/Fish/parts/Head.tscn" id="1_wcae1"]
+[ext_resource type="PackedScene" uid="uid://nxjvkfwhblbk" path="res://scenes/Fish/parts/Segment.tscn" id="2_aby42"]
+[ext_resource type="PackedScene" uid="uid://bwo7x6cjl7n2" path="res://scenes/Fish/parts/Tail.tscn" id="3_yy0dm"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_bxeq1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Head" parent="." instance=ExtResource("1_wcae1")]
+
+[node name="Segment" parent="." instance=ExtResource("2_aby42")]
+position = Vector2(0, 96)
+
+[node name="Tail" parent="." instance=ExtResource("3_yy0dm")]
+position = Vector2(0, 192)

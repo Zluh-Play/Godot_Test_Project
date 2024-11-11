@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://cebu2xebllolu"]
+[gd_scene load_steps=3 format=3 uid="uid://cebu2xebllolu"]
 
-[node name="Head" type="Node"]
+[ext_resource type="Texture2D" uid="uid://gmg1lqoqwmsf" path="res://icon.svg" id="1_nq137"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fuql"]
+size = Vector2(128, 128)
+
+[node name="Head" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nq137")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3fuql")

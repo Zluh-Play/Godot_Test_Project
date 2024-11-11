@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://qilvpu34musp"]
 
 [ext_resource type="Texture2D" uid="uid://ddvyjq4pm5vur" path="res://assets/images/Sea bottom.png" id="1_epfqr"]
-[ext_resource type="PackedScene" uid="uid://c6insg5b211js" path="res://scenes/Test_Scene.tscn" id="2_ume65"]
+[ext_resource type="PackedScene" uid="uid://c4d6j4bvaxta0" path="res://scenes/Fish/Fish.tscn" id="2_137f0"]
 
 [node name="World" type="Node"]
 
@@ -10,4 +10,8 @@ position = Vector2(576, 324)
 scale = Vector2(0.96, 0.81)
 texture = ExtResource("1_epfqr")
 
-[node name="Sprite2D2" parent="." instance=ExtResource("2_ume65")]
+[node name="Fish1" parent="." instance=ExtResource("2_137f0")]
+position = Vector2(112.699, 107.245)
+
+[node name="Fish2" parent="." instance=ExtResource("2_137f0")]
+position = Vector2(568, 261)
